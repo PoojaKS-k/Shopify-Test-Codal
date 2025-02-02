@@ -1,0 +1,15 @@
+
+{% if product.metafields.custom.product_data_sheets.value %}
+    <ul class="pdsList">
+      {% for file in product.metafields.custom.product_data_sheets.value %}
+        <li class="pdsItm">
+          <img src="{{ file.preview_image.src | image_url: width: '20px', height:'20px'  }}" height="" width="" />
+          {% assign file_name_extrctd = file.url | split: '/' | last %} <!-- parse the file name from the URL -->
+          {% assign file_name = file_name_extrctd | split: '?' | first %}
+          <a href="{{ file.url }}" target="_blank" class="pdsFile">
+            {{ file_name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+{% endif %}
